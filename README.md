@@ -1,4 +1,4 @@
-# cx_freeze_help
+# cx-freeze_help
 The items and information needed to make cx_freeze build an application from python 3 code.
 My system:
 * Python3.6
