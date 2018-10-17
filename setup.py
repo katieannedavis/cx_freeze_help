@@ -5,7 +5,7 @@ from cx_Freeze import setup, Executable
 
 # single files in the same folder can have just their names, to include everything in a folder give folder name
 # cx_freeze will create a folder in the program of the same name
-includefiles = ['']
+includefiles = ['example.py', 'example.ico', 'examples/', 'example.jpg']
 
 # 'atexit' is required for PyQt5 programs
 includes = ['atexit']
@@ -15,6 +15,7 @@ excludes = ['']
 
 # If you don't include 'idna' cx_freeze will send an ImportError: cannot import name 'idnadata'
 # Including PyQt5 in packages will send an ImportError: cannot find pyqt5.qt. It's there but it won't be found.
+# cx-freeze auto detects PyQt5 files
 packages = ['idna']
 
 # Include when you don't want a console window to appear, delete this if you do
@@ -34,20 +35,22 @@ options = {
     }
 }
 
+# targetName will change the name of the executable, it must be named with an .exe. Otherwise it will throw an error.
 executables = [
     Executable('main.py', base=base,
                icon='icon.ico',
-               shortcutName='Letter Game',
-               targetName='LetterGame.exe')
+               shortcutName='example',
+               targetName='example.exe')
 ]
 
-# The solution to the cx_freeze: keyerror tcl library, I had to hard code the location of tcl
+# The solution to the cx_freeze: keyerror tcl library, hard code the location of tcl
 os.environ['TCL_LIBRARY'] = r'C:\Users\katie\AppData\Local\Programs\Python\Python36\tcl\tcl8.6'
 os.environ['TK_LIBRARY'] = r'C:\Users\katie\AppData\Local\Programs\Python\Python36\tcl\tk8.6'
 
-setup(name='',
+# author will appear on installation page, description will appear when user hovers over application
+setup(name='Example',
       version='0.1',
-      description='',
+      description='An example',
       author='Katie Davis',
       author_email='',
       executables=executables,
